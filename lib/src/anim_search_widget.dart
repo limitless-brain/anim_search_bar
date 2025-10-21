@@ -273,7 +273,7 @@ class _AnimSearchBarState extends State<AnimSearchBar>
                       textFieldValue = value;
                     },
                     onSubmitted: (value) {
-                      widget.onSubmitted(value),
+                      widget.onSubmitted(value);
                       if(widget.closeOnSubmit){
                         /// on submit the keyboard will be closed and the search bar will be closed
                         unfocusKeyboard(),
