@@ -43,6 +43,8 @@ class AnimSearchBar extends StatefulWidget {
   final Function(String) onSubmitted;
   final TextInputAction textInputAction;
   final Function(int) searchBarOpen;
+  final bool clearTextOnSubmit;
+  final bool closeOnSubmit;
   const AnimSearchBar({
     Key? key,
 
@@ -95,6 +97,12 @@ class AnimSearchBar extends StatefulWidget {
 
     /// can add list of inputformatters to control the input
     this.inputFormatters,
+
+    /// clear text field on submit
+    this.clearTextOnSubmit = true,
+
+    /// close search bar on submit
+    this.closeOnSubmit = true,
   }) : super(key: key);
 
   @override
@@ -264,13 +272,16 @@ class _AnimSearchBarState extends State<AnimSearchBar>
                     onChanged: (value) {
                       textFieldValue = value;
                     },
-                    onSubmitted: (value) => {
+                    onSubmitted: (value) {
                       widget.onSubmitted(value),
-                      unfocusKeyboard(),
-                      setState(() {
-                        toggle = 0;
-                      }),
-                      widget.textController.clear(),
+                      if(widget.closeOnSubmit){
+                        /// on submit the keyboard will be closed and the search bar will be closed
+                        unfocusKeyboard(),
+                        setState(() {
+                          toggle = 0;
+                        });
+                      }
+                      if (widget.clearTextOnSubmit) widget.textController.clear();
                     },
                     onEditingComplete: () {
                       /// on editing complete the keyboard will be closed and the search bar will be closed
