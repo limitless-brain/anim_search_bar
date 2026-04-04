@@ -47,7 +47,8 @@ class AnimSearchBar extends StatefulWidget {
   final bool clearTextOnSubmit;
   final bool closeOnSubmit;
   final bool dismissKeyboardOnEditingComplete;
-  final bool hasPrefix;
+  final bool hasBackButton;
+
   const AnimSearchBar({
     Key? key,
 
