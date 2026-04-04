@@ -332,7 +332,7 @@ class _AnimSearchBarState extends State<AnimSearchBar>
               ),
             ),
 
-            if(widget.hasBackButton && toggle == 1)
+            if(widget.hasBackButton || (toggle == 0 && !widget.hasBackButton))
             ///Using material widget here to get the ripple effect on the prefix icon
             Material(
               /// can add custom color or the color will be white
